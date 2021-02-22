@@ -1,0 +1,21 @@
+{% extends 'task/base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+    <div class="content-section">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class=" mb4">Update Task</legend>
+            </fieldset>
+            {{ form | crispy }}
+            <div class="">
+                <input class="btn btn-secondary form-control" type="submit" value="update">
+            </div>
+        </form>
+    </div>
+    <div class="mt-4">
+        <a href="{% url 'home' %}">Home</a>
+    </div>
+
+{% endblock body %}

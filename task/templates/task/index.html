@@ -1,0 +1,41 @@
+{% extends 'task/base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <div class="bg-light mb-2 p-2">
+        <form class="form-inline" action="" method="get">
+            <div class="form-group mr-2">
+                <input class="form-control" type="search" name="title" placeholder="search by text...">
+            </div>
+            <div class="form-group mr-4">
+                <select class="form-control" name="type" id="">
+                    <option value="none">All tasks</option>
+                    <option value="True">Completed</option>
+                    <option value="False">Not completed</option>
+                </select>
+            </div>
+            <input class="btn btn-primary float-right " type="submit" value="Filter">
+        </form>
+    </div>
+    <div class="content-section">
+        <div class="mb-4">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.title | as_crispy_field}}
+            <input class="btn btn-secondary form-control" type="submit" value="add">
+        </form>
+    </div>
+        <div>
+            {% for task in tasks %}
+                <div class="task pt-4 mb-4">
+                    <a class="btn btn-sm btn-info" href="{% url 'task_update' task.id %}">Update</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'task_delete' task.id %}">Delete</a>
+                    {% if task.is_completed %}
+                        <h3 class="mt-2"><s>{{ task }}</s></h3>
+                    {% else %}
+                        <h3 class="mt-2">{{ task }}</h3>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock body %}

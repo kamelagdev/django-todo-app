@@ -1,0 +1,9 @@
+.content-section {
+    padding: 15px;
+    background-color: #ceece7;
+}
+
+.task {
+    border-top: #0c5460 1px solid;
+    white-space: normal;
+}
